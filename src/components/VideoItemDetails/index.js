@@ -120,56 +120,74 @@ class VideoItemDetails extends Component {
     const {name, profileImageUrl, subscriberCount} = channel
 
     return (
-      <MainVideoItemContainer>
-        <div>
-          <ReactPlayer url={videoUrl} width="100%" />
-          <h1>{title}</h1>
-          <ViewDataContainer>
-            <LikeContainer>
-              <p>{viewCount} views </p>
-              <BsDot />
-              <p>{formatDistanceToNow(new Date(publishedAt))}</p>
-            </LikeContainer>
-            <LikeDataContainer>
-              <LikeButton type="button" onClick={this.onClickLikeButton}>
-                <LikeContainer>
-                  <AiOutlineLike color={likeButton ? '#3b83f6' : ''} />
-                  <LikeColorButton likeButton={likeButton}>
-                    {' '}
-                    Like{' '}
-                  </LikeColorButton>
-                </LikeContainer>
-              </LikeButton>
-              <LikeButton type="button" onClick={this.onClickDislikeButton}>
-                <LikeContainer>
-                  <AiOutlineDislike color={dislikeButton ? '#3b83f6' : ''} />
-                  <DisLikeColorButton dislikeButton={dislikeButton}>
-                    {' '}
-                    Dislike{' '}
-                  </DisLikeColorButton>
-                </LikeContainer>
-              </LikeButton>
-              <LikeButton type="button">
-                <LikeContainer>
-                  <MdPlaylistAdd />
-                  <p> Save </p>
-                </LikeContainer>
-              </LikeButton>
-            </LikeDataContainer>
-          </ViewDataContainer>
-        </div>
-        <hr />
-        <SubscriberContainer>
-          <div>
-            <ProfileImg src={profileImageUrl} alt={name} />
-          </div>
-          <div>
-            <h1>{name}</h1>
-            <p>{subscriberCount} subscribers</p>
-            <p>{description}</p>
-          </div>
-        </SubscriberContainer>
-      </MainVideoItemContainer>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {addSavedVideosList} = value
+
+          return (
+            <MainVideoItemContainer>
+              <div>
+                <ReactPlayer url={videoUrl} width="100%" />
+                <h1>{title}</h1>
+                <ViewDataContainer>
+                  <LikeContainer>
+                    <p>{viewCount} views </p>
+                    <BsDot />
+                    <p>{formatDistanceToNow(new Date(publishedAt))}</p>
+                  </LikeContainer>
+                  <LikeDataContainer>
+                    <LikeButton type="button" onClick={this.onClickLikeButton}>
+                      <LikeContainer>
+                        <AiOutlineLike color={likeButton ? '#3b83f6' : ''} />
+                        <LikeColorButton likeButton={likeButton}>
+                          {' '}
+                          Like{' '}
+                        </LikeColorButton>
+                      </LikeContainer>
+                    </LikeButton>
+                    <LikeButton
+                      type="button"
+                      onClick={this.onClickDislikeButton}
+                    >
+                      <LikeContainer>
+                        <AiOutlineDislike
+                          color={dislikeButton ? '#3b83f6' : ''}
+                        />
+                        <DisLikeColorButton dislikeButton={dislikeButton}>
+                          {' '}
+                          Dislike{' '}
+                        </DisLikeColorButton>
+                      </LikeContainer>
+                    </LikeButton>
+                    <LikeButton
+                      type="button"
+                      onClick={() =>
+                        addSavedVideosList(allVideoItemDetailsList)
+                      }
+                    >
+                      <LikeContainer>
+                        <MdPlaylistAdd />
+                        <p> Save </p>
+                      </LikeContainer>
+                    </LikeButton>
+                  </LikeDataContainer>
+                </ViewDataContainer>
+              </div>
+              <hr />
+              <SubscriberContainer>
+                <div>
+                  <ProfileImg src={profileImageUrl} alt={name} />
+                </div>
+                <div>
+                  <h1>{name}</h1>
+                  <p>{subscriberCount} subscribers</p>
+                  <p>{description}</p>
+                </div>
+              </SubscriberContainer>
+            </MainVideoItemContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 

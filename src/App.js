@@ -14,19 +14,27 @@ import NxtWatchContext from './NxtWatchContext'
 
 // Replace your code here
 class App extends Component {
-  state = {isDarkTheme: false}
+  state = {isDarkTheme: false, savedVideosList: []}
 
   isDayTheme = () => {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
   }
 
+  addSavedVideosList = savedVideos => {
+    this.setState(prevState => ({
+      savedVideosList: [...prevState.savedVideosList, savedVideos],
+    }))
+  }
+
   render() {
-    const {isDarkTheme} = this.state
+    const {isDarkTheme, savedVideosList} = this.state
     return (
       <NxtWatchContext.Provider
         value={{
           isDarkTheme,
           isDayTheme: this.isDayTheme,
+          savedVideosList,
+          addSavedVideosList: this.addSavedVideosList,
         }}
       >
         <>
