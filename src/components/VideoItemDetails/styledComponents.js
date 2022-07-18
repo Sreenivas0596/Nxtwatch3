@@ -50,3 +50,11 @@ export const VideoItemsContainer = styled.div`
 export const VideoItemDarkContainer = styled.div`
   display: flex;
 `
+
+export const LikeColorButton = styled.p`
+  color: ${props => (props.likeButton ? '#3b82f6' : '')};
+`
+
+export const DisLikeColorButton = styled.p`
+  color: ${props => (props.dislikeButton ? '#3b82f6' : '')};
+`

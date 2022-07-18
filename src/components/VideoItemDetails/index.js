@@ -18,6 +18,8 @@ import {
   FailureImg,
   VideoItemsContainer,
   VideoItemDarkContainer,
+  LikeColorButton,
+  DisLikeColorButton,
 } from './styledComponents'
 import NxtWatchContext from '../../NxtWatchContext'
 
@@ -31,7 +33,12 @@ const apiStatusConstants = {
 const apiUrl = 'https://apis.ccbp.in/videos/'
 
 class VideoItemDetails extends Component {
-  state = {allVideoItemDetailsList: {}, apiStatus: apiStatusConstants.initial}
+  state = {
+    allVideoItemDetailsList: {},
+    apiStatus: apiStatusConstants.initial,
+    likeButton: false,
+    dislikeButton: false,
+  }
 
   componentDidMount() {
     this.getVideoItemDetails()
@@ -82,8 +89,22 @@ class VideoItemDetails extends Component {
     }
   }
 
+  onClickLikeButton = () => {
+    this.setState(prevState => ({
+      likeButton: !prevState.likeButton,
+      dislikeButton: false,
+    }))
+  }
+
+  onClickDislikeButton = () => {
+    this.setState(prevState => ({
+      dislikeButton: !prevState.dislikeButton,
+      likeButton: false,
+    }))
+  }
+
   renderNxtWatchAllVideoItemDetailsSuccessView = () => {
-    const {allVideoItemDetailsList} = this.state
+    const {allVideoItemDetailsList, likeButton, dislikeButton} = this.state
 
     console.log(allVideoItemDetailsList)
 
@@ -110,16 +131,22 @@ class VideoItemDetails extends Component {
               <p>{formatDistanceToNow(new Date(publishedAt))}</p>
             </LikeContainer>
             <LikeDataContainer>
-              <LikeButton type="button">
+              <LikeButton type="button" onClick={this.onClickLikeButton}>
                 <LikeContainer>
-                  <AiOutlineLike />
-                  <p> Like </p>
+                  <AiOutlineLike color={likeButton ? '#3b83f6' : ''} />
+                  <LikeColorButton likeButton={likeButton}>
+                    {' '}
+                    Like{' '}
+                  </LikeColorButton>
                 </LikeContainer>
               </LikeButton>
-              <LikeButton type="button">
+              <LikeButton type="button" onClick={this.onClickDislikeButton}>
                 <LikeContainer>
-                  <AiOutlineDislike />
-                  <p> Dislike </p>
+                  <AiOutlineDislike color={dislikeButton ? '#3b83f6' : ''} />
+                  <DisLikeColorButton dislikeButton={dislikeButton}>
+                    {' '}
+                    Dislike{' '}
+                  </DisLikeColorButton>
                 </LikeContainer>
               </LikeButton>
               <LikeButton type="button">
