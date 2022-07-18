@@ -17,7 +17,7 @@ import NxtWatchContext from '../../NxtWatchContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
-  inProgress: 'INPROGRESS',
+  inProgress: 'IN_PROGRESS',
   failure: 'FAILURE',
 
   success: 'SUCCESS',
