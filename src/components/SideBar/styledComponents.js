@@ -5,6 +5,7 @@ export const ListSideBarContainer = styled.li`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: ${props => (props.activeHomeTab ? '#ff0b37' : '#000000')};
 `
 
 export const SideBarContainer = styled.div`

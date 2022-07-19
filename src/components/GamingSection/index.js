@@ -10,7 +10,6 @@ import {
   TrendingSectionContainer,
   FailureImg,
   GameDarkContainer,
-  DarkHeading,
 } from './styledComponents'
 import NxtWatchContext from '../../NxtWatchContext'
 
@@ -147,7 +146,7 @@ class GamingSection extends Component {
                 <GameDarkContainer isDarkTheme={isDarkTheme}>
                   <TrendingContainer>
                     <SiYoutubegaming />
-                    <DarkHeading isDarkThem={isDarkTheme}> Gaming </DarkHeading>
+                    <h1 isDarkThem={isDarkTheme}> Gaming </h1>
                   </TrendingContainer>
                   <div>{this.renderGamingVideos()}</div>
                 </GameDarkContainer>

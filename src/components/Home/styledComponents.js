@@ -2,11 +2,15 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
   display: flex;
-  width: 900px;
 `
 
-export const NxtWatchBackGroundImage = styled.div`
+export const BannerImg = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 15px;
 `
 export const InputContainer = styled.div`
   display: flex;
@@ -37,5 +41,8 @@ export const FailureImg = styled.img`
 
 export const HomeVideoContainer = styled.div`
   background-color: ${props => (props.isDarkTheme ? '#000000' : '')};
+`
+
+export const HomeVideoCardContainer = styled.div`
   color: ${props => (props.isDarkTheme ? '#ffffff' : '')};
 `

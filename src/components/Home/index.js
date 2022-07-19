@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Loader} from 'react-loader-spinner'
 import {BsSearch} from 'react-icons/bs'
+import {MdClose} from 'react-icons/md'
 import Header from '../Header'
 import VideoCard from '../VideoCard'
 import SideBar from '../SideBar'
@@ -11,16 +12,17 @@ import {
   InputButton,
   FailureImg,
   HomeVideoContainer,
+  HomeVideoCardContainer,
+  BannerImg,
 } from './styledComponents'
 import './index.css'
 import NxtWatchContext from '../../NxtWatchContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
-  inProgress: 'IN_PROGRESS',
   failure: 'FAILURE',
-
   success: 'SUCCESS',
+  inProgress: 'IN_PROGRESS',
 }
 
 class Home extends Component {
@@ -28,6 +30,7 @@ class Home extends Component {
     allNxtWatchVideosList: [],
     apiStatus: apiStatusConstants.initial,
     searchInput: '',
+    showBanner: true,
   }
 
   componentDidMount() {
@@ -35,6 +38,7 @@ class Home extends Component {
   }
 
   getNxtWatchVideos = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
 
     const options = {
@@ -70,7 +74,10 @@ class Home extends Component {
         apiStatus: apiStatusConstants.success,
       })
     } else {
-      this.setState({apiStatus: apiStatusConstants.failure})
+      this.setState({
+        allNxtWatchVideosList: [],
+        apiStatus: apiStatusConstants.failure,
+      })
     }
   }
 
@@ -88,25 +95,33 @@ class Home extends Component {
     console.log(title)
 
     return (
-      <div>
-        <div className="input-search-container">
-          <input
-            type="search"
-            value={searchInput}
-            onChange={this.onChangeInput}
-            placeholder="Search"
-            className="input"
-          />
-          <InputButton type="button">
-            <BsSearch />
-          </InputButton>
-        </div>
-        <div>
-          {allNxtWatchVideosList.map(eachVideo => (
-            <VideoCard key={eachVideo.id} videoDetails={eachVideo} />
-          ))}
-        </div>
-      </div>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+
+          return (
+            <div>
+              <div className="input-search-container">
+                <input
+                  type="search"
+                  value={searchInput}
+                  onChange={this.onChangeInput}
+                  placeholder="Search"
+                  className="input"
+                />
+                <InputButton type="button" onClick={this.getNxtWatchVideos}>
+                  <BsSearch />
+                </InputButton>
+              </div>
+              <HomeVideoCardContainer isDarkTheme={isDarkTheme}>
+                {allNxtWatchVideosList.map(eachVideo => (
+                  <VideoCard key={eachVideo.id} videoDetails={eachVideo} />
+                ))}
+              </HomeVideoCardContainer>
+            </div>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 
@@ -128,11 +143,24 @@ class Home extends Component {
     </div>
   )
 
-  renderLoadingView = () => (
-    <div className="loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#000000" height="50" width="50" />
-    </div>
-  )
+  renderLoadingView = () => {
+    ;<NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <div isDarkTheme={isDarkTheme}>
+            <div className="loader-container" data-testid="loader">
+              <Loader type="ThreeDots" color="#000000" height="50" width="50" />
+            </div>
+          </div>
+        )
+      }}
+    </NxtWatchContext.Consumer>
+  }
+
+  onClickCloseButton = () => {
+    this.setState({showBanner: false})
+  }
 
   renderNxtWatchVideos = () => {
     const {apiStatus} = this.state
@@ -153,10 +181,12 @@ class Home extends Component {
   }
 
   render() {
+    const {showBanner} = this.state
     return (
       <NxtWatchContext.Consumer>
         {value => {
           const {isDarkTheme} = value
+
           return (
             <div>
               <Header />
@@ -165,13 +195,28 @@ class Home extends Component {
                   <SideBar />
                 </div>
                 <HomeVideoContainer isDarkTheme={isDarkTheme}>
-                  <div className="nxt-watch-home-container">
-                    <img
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                      alt="website logo"
-                    />
-                    <p> Buy Nxt Watch Premium Prepaid plans with UPI</p>
-                    <button type="button"> GET IT NOW</button>
+                  <div>
+                    {showBanner && (
+                      <BannerImg data-testid="banner">
+                        <div>
+                          <img
+                            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                            alt="nxt watch logo"
+                          />
+                          <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
+                          <button type="button">GET IT NOW </button>
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            data-testid="close"
+                            onClick={this.onClickCloseButton}
+                          >
+                            <MdClose size={16} />
+                          </button>
+                        </div>
+                      </BannerImg>
+                    )}
                   </div>
                   {this.renderNxtWatchVideos()}
                 </HomeVideoContainer>

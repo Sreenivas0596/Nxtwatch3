@@ -43,7 +43,7 @@ export const FailureImg = styled.img`
 `
 
 export const VideoItemsContainer = styled.div`
-  background-color: ${props => (props.isDarkTheme ? '#000000' : '')};
+  background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '')};
   color: ${props => (props.isDarkTheme ? '#ffffff' : '')};
 `
 

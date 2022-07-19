@@ -68,7 +68,7 @@ class SideBar extends Component {
                     className="img"
                   />
                 </FbContainer>
-                <p>Enjoy ! Now to see your channels and recommendations!</p>
+                <p>Enjoy! Now to see your channels and recommendations!</p>
               </SnsContainer>
             </SideBarContainer>
           )

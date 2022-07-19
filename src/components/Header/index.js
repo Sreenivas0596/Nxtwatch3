@@ -55,7 +55,11 @@ const Header = props => {
               </Link>
             </div>
             <ProfileContainer>
-              <LightDarkButton type="button" onClick={onClickDarkButton}>
+              <LightDarkButton
+                type="button"
+                onClick={onClickDarkButton}
+                data-testid="theme"
+              >
                 {moonSunImg}
               </LightDarkButton>
               <ProfileImage
@@ -80,7 +84,7 @@ const Header = props => {
                       <div>
                         <LogoutHeading isDarkTheme={isDarkTheme}>
                           {' '}
-                          Are you sure you want to logout
+                          Are you sure, you want to logout
                         </LogoutHeading>
                       </div>
                       <div>

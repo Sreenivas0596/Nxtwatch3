@@ -9,7 +9,10 @@ import {
   ViewDateContainer,
   VideoListContainer,
   ProfileHeading,
+  DetailsContainer,
+  ProfileParagraph,
 } from './styledComponents'
+import NxtWatchContext from '../../NxtWatchContext'
 
 const VideoCard = props => {
   const {videoDetails} = props
@@ -24,27 +27,42 @@ const VideoCard = props => {
 
   const {name, profileImageUrl} = channel
   return (
-    <Link to={`/videos/${id}`} className="nav-link">
-      <VideoListContainer>
-        <ThumbnailUrlImg src={thumbnailUrl} alt={title} />
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <Link to={`/videos/${id}`} className="nav-link">
+            <VideoListContainer>
+              <ThumbnailUrlImg src={thumbnailUrl} alt={title} />
 
-        <ProfileImageContainer>
-          <div>
-            <ProfileImg src={profileImageUrl} alt={name} />
-          </div>
-          <div>
-            <ProfileHeading>{title}</ProfileHeading>
+              <ProfileImageContainer>
+                <div>
+                  <ProfileImg src={profileImageUrl} alt={name} />
+                </div>
+                <DetailsContainer>
+                  <ProfileHeading isDarkTheme={isDarkTheme}>
+                    {title}
+                  </ProfileHeading>
 
-            <p>{name}</p>
-            <ViewDateContainer>
-              <p>{viewCount} views </p>
-              <BsDot />
-              <p>{formatDistanceToNow(new Date(publishedAt))}</p>
-            </ViewDateContainer>
-          </div>
-        </ProfileImageContainer>
-      </VideoListContainer>
-    </Link>
+                  <ProfileParagraph isDarkTheme={isDarkTheme}>
+                    {name}
+                  </ProfileParagraph>
+                  <ViewDateContainer>
+                    <ProfileParagraph isDarkTheme={isDarkTheme}>
+                      {viewCount} views{' '}
+                    </ProfileParagraph>
+                    <BsDot />
+                    <ProfileParagraph isDarkTheme={isDarkTheme}>
+                      {formatDistanceToNow(new Date(publishedAt))}
+                    </ProfileParagraph>
+                  </ViewDateContainer>
+                </DetailsContainer>
+              </ProfileImageContainer>
+            </VideoListContainer>
+          </Link>
+        )
+      }}
+    </NxtWatchContext.Consumer>
   )
 }
 

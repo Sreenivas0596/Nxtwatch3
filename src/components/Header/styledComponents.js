@@ -63,7 +63,7 @@ export const CancelButton = styled.button`
   cursor: pointer;
 `
 
-export const LogoutHeading = styled.h1`
+export const LogoutHeading = styled.p`
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#3b83f6')};
   font-size: 28px;
   text-align: center;

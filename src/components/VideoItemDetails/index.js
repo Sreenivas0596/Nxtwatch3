@@ -123,7 +123,9 @@ class VideoItemDetails extends Component {
     return (
       <NxtWatchContext.Consumer>
         {value => {
-          const {addSavedVideosList} = value
+          const {addSavedVideosList, isSaved} = value
+
+          const savedText = isSaved ? 'Saved' : 'Save'
 
           return (
             <MainVideoItemContainer>
@@ -168,7 +170,7 @@ class VideoItemDetails extends Component {
                     >
                       <LikeContainer>
                         <MdPlaylistAdd />
-                        <p> Save </p>
+                        <p> {savedText} </p>
                       </LikeContainer>
                     </LikeButton>
                   </LikeDataContainer>
@@ -243,7 +245,10 @@ class VideoItemDetails extends Component {
                   <SideBar />
                 </div>
                 <div>
-                  <VideoItemsContainer isDarkTheme={isDarkTheme}>
+                  <VideoItemsContainer
+                    isDarkTheme={isDarkTheme}
+                    data-testid="videoItemDetails"
+                  >
                     {this.renderVideoItemDetails()}
                   </VideoItemsContainer>
                 </div>

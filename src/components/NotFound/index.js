@@ -12,10 +12,10 @@ const NotFound = () => (
           <NotFoundContainer isDarkTheme={isDarkTheme}>
             <NotFoundImg
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png"
-              alt=""
+              alt="not found"
             />
             <h1> Page Not Found</h1>
-            <p> We are sorry, the page you requested could not be found </p>
+            <p> we are sorry, the page you requested could not be found. </p>
           </NotFoundContainer>
         </>
       )

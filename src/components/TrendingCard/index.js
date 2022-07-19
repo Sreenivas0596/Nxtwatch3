@@ -1,4 +1,5 @@
 import {BsDot} from 'react-icons/bs'
+import {formatDistanceToNow} from 'date-fns'
 import {
   LikeContainer,
   TrendingContainer,
@@ -11,14 +12,14 @@ const TrendingCard = props => {
   const {name} = channel
   return (
     <TrendingContainer>
-      <TrendingImage src={thumbnailUrl} alt="" />
+      <TrendingImage src={thumbnailUrl} alt="video thumbnail" />
       <div>
-        <h1>{title}</h1>
+        <p>{title}</p>
         <p>{name}</p>
         <LikeContainer>
           <p>{viewCount} views</p>
           <BsDot />
-          <p>{publishedAt}</p>
+          <p> {formatDistanceToNow(new Date(publishedAt))}</p>
         </LikeContainer>
       </div>
     </TrendingContainer>

@@ -29,4 +29,14 @@ export const VideoListContainer = styled.li`
 export const ProfileHeading = styled.h1`
   font-size: 24px;
   font-weight: bold;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '')};
+`
+
+export const DetailsContainer = styled.div`
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '')};
+`
+export const ProfileParagraph = styled.p`
+  font-size: 20px;
+  font-weight: 500;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '')};
 `

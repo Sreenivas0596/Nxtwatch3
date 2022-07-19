@@ -5,6 +5,8 @@ const NxtWatchContext = React.createContext({
   isDayTheme: () => {},
   savedVideosList: [],
   addSavedVideosList: () => {},
+  activeTab: '',
+  isSaved: false,
 })
 
 export default NxtWatchContext

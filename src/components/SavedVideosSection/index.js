@@ -15,7 +15,7 @@ class SavedVideosSection extends Component {
     return (
       <NxtWatchContext.Consumer>
         {value => {
-          const {savedVideosList} = value
+          const {savedVideosList, isDarkTheme} = value
 
           const savedLength = savedVideosList.length
           if (savedLength === 0) {
@@ -26,7 +26,7 @@ class SavedVideosSection extends Component {
                   <div>
                     <SideBar />
                   </div>
-                  <SavedVideosContainer>
+                  <SavedVideosContainer isDarkTheme={isDarkTheme}>
                     <div>
                       <NoVideosImg
                         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
@@ -47,14 +47,14 @@ class SavedVideosSection extends Component {
                 <div>
                   <SideBar />
                 </div>
-                <div>
+                <SavedVideosContainer isDarkTheme={isDarkTheme}>
                   {savedVideosList.map(eachSavedVideo => (
                     <SavedVideoCard
                       key={eachSavedVideo.id}
                       savedVideoDetails={eachSavedVideo}
                     />
                   ))}
-                </div>
+                </SavedVideosContainer>
               </SaveVideoContainer>
             </div>
           )
