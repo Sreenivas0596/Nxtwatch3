@@ -22,3 +22,7 @@ export const GameDarkContainer = styled.div`
 export const DarkHeading = styled.h1`
   color: ${props => (props.isDarkTheme ? '#ffffff' : '')};
 `
+
+export const GamingContainer = styled.div`
+  background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '')};
+`

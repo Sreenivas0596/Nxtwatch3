@@ -131,7 +131,7 @@ class VideoItemDetails extends Component {
             <MainVideoItemContainer>
               <div>
                 <ReactPlayer url={videoUrl} width="100%" />
-                <h1>{title}</h1>
+                <p>{title}</p>
                 <ViewDataContainer>
                   <LikeContainer>
                     <p>{viewCount} views </p>
@@ -179,10 +179,10 @@ class VideoItemDetails extends Component {
               <hr />
               <SubscriberContainer>
                 <div>
-                  <ProfileImg src={profileImageUrl} alt={name} />
+                  <ProfileImg src={profileImageUrl} alt="channel logo" />
                 </div>
                 <div>
-                  <h1>{name}</h1>
+                  <p>{name}</p>
                   <p>{subscriberCount} subscribers</p>
                   <p>{description}</p>
                 </div>
@@ -205,7 +205,11 @@ class VideoItemDetails extends Component {
         We are having some trouble to complete your request.Please try again
       </p>
       <div>
-        <button type="button" className="button" onClick={this.getAllJobsData}>
+        <button
+          type="button"
+          className="button"
+          onClick={this.getVideoItemDetails}
+        >
           Retry
         </button>
       </div>

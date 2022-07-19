@@ -95,7 +95,11 @@ class TrendingSection extends Component {
         We are having some trouble to complete your request.Please try again
       </p>
       <div>
-        <button type="button" className="button" onClick={this.getAllJobsData}>
+        <button
+          type="button"
+          className="button"
+          onClick={this.getTrendingVideos}
+        >
           Retry
         </button>
       </div>
@@ -129,7 +133,10 @@ class TrendingSection extends Component {
                 <div>
                   <SideBar />
                 </div>
-                <TrendingDarkContainer isDarkTheme={isDarkTheme}>
+                <TrendingDarkContainer
+                  isDarkTheme={isDarkTheme}
+                  data-testid="trending"
+                >
                   {this.renderTrendingVideos()}
                 </TrendingDarkContainer>
               </TrendingSectionContainer>

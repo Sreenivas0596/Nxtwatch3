@@ -138,10 +138,14 @@ class LoginForm extends Component {
                   </div>{' '}
                   <div className="input-container">
                     {' '}
-                    {this.renderPassword()}{' '}
+                    {this.renderPassword()}
                   </div>{' '}
                   <div className="checkbox-container">
-                    <input type="checkbox" onClick={this.onClickCheckBox} />
+                    <input
+                      type="checkbox"
+                      onClick={this.onClickCheckBox}
+                      id="checkbox"
+                    />
 
                     <label htmlFor="checkbox">Show Password</label>
                   </div>

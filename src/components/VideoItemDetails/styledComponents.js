@@ -52,9 +52,9 @@ export const VideoItemDarkContainer = styled.div`
 `
 
 export const LikeColorButton = styled.p`
-  color: ${props => (props.likeButton ? '#3b82f6' : '')};
+  color: ${props => (props.likeButton ? '#2563eb' : '#64748b')};
 `
 
 export const DisLikeColorButton = styled.p`
-  color: ${props => (props.dislikeButton ? '#3b82f6' : '')};
+  color: ${props => (props.dislikeButton ? '#2563eb' : '#64748b')};
 `

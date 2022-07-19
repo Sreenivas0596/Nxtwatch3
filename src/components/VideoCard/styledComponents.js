@@ -26,7 +26,7 @@ export const VideoListContainer = styled.li`
   margin-bottom: 10px;
 `
 
-export const ProfileHeading = styled.h1`
+export const ProfileHeading = styled.p`
   font-size: 24px;
   font-weight: bold;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '')};

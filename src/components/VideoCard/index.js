@@ -33,11 +33,11 @@ const VideoCard = props => {
         return (
           <Link to={`/videos/${id}`} className="nav-link">
             <VideoListContainer>
-              <ThumbnailUrlImg src={thumbnailUrl} alt={title} />
+              <ThumbnailUrlImg src={thumbnailUrl} alt="video thumbnail" />
 
               <ProfileImageContainer>
                 <div>
-                  <ProfileImg src={profileImageUrl} alt={name} />
+                  <ProfileImg src={profileImageUrl} alt="channel logo" />
                 </div>
                 <DetailsContainer>
                   <ProfileHeading isDarkTheme={isDarkTheme}>

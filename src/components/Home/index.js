@@ -136,7 +136,11 @@ class Home extends Component {
         We are having some trouble to complete your request.Please try again
       </p>
       <div>
-        <button type="button" className="button" onClick={this.getAllJobsData}>
+        <button
+          type="button"
+          className="button"
+          onClick={this.getNxtWatchVideos}
+        >
           Retry
         </button>
       </div>

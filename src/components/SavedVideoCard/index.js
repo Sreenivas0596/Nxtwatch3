@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
 
 import {BsDot} from 'react-icons/bs'
@@ -11,25 +12,28 @@ const SavedVideoCard = props => {
     viewCount,
     publishedAt,
     thumbnailUrl,
+    id,
   } = savedVideoDetails
 
   const {name} = channel
 
   return (
-    <SavedVideoContainer>
-      <div>
-        <img src={thumbnailUrl} alt={name} />
-      </div>
-      <div>
-        <h1> {title}</h1>
-        <h1>{name}</h1>
-        <ViewDateContainer>
-          <p>{viewCount} views </p>
-          <BsDot />
-          <p>{formatDistanceToNow(new Date(publishedAt))}</p>
-        </ViewDateContainer>
-      </div>
-    </SavedVideoContainer>
+    <Link to={`/videos/${id}`} className="nav-link">
+      <SavedVideoContainer>
+        <div>
+          <img src={thumbnailUrl} alt="video thumbnail" />
+        </div>
+        <div>
+          <p> {title}</p>
+          <p>{name}</p>
+          <ViewDateContainer>
+            <p>{viewCount} views </p>
+            <BsDot />
+            <p>{formatDistanceToNow(new Date(publishedAt))}</p>
+          </ViewDateContainer>
+        </div>
+      </SavedVideoContainer>
+    </Link>
   )
 }
 

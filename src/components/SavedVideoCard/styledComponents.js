@@ -5,6 +5,7 @@ export const ViewDateContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
-export const SavedVideoContainer = styled.div`
+export const SavedVideoContainer = styled.li`
   display: flex;
+  list-style-type: none;
 `

@@ -10,6 +10,7 @@ import {
   TrendingSectionContainer,
   FailureImg,
   GameDarkContainer,
+  GamingContainer,
 } from './styledComponents'
 import NxtWatchContext from '../../NxtWatchContext'
 
@@ -89,7 +90,7 @@ class GamingSection extends Component {
         We are having some trouble to complete your request.Please try again
       </p>
       <div>
-        <button type="button" className="button" onClick={this.getAllJobsData}>
+        <button type="button" className="button" onClick={this.getGamingVideos}>
           Retry
         </button>
       </div>
@@ -148,7 +149,9 @@ class GamingSection extends Component {
                     <SiYoutubegaming />
                     <h1 isDarkThem={isDarkTheme}> Gaming </h1>
                   </TrendingContainer>
-                  <div>{this.renderGamingVideos()}</div>
+                  <GamingContainer data-testid="gaming">
+                    {this.renderGamingVideos()}
+                  </GamingContainer>
                 </GameDarkContainer>
               </TrendingSectionContainer>
             </div>

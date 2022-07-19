@@ -35,6 +35,7 @@ class SavedVideosSection extends Component {
                     </div>
                     <h1>No Saved Videos found</h1>
                     <p> You can save videos while watching them</p>
+                    <p> Save your videos by clicking a button</p>
                   </SavedVideosContainer>
                 </SaveVideoContainer>
               </div>
@@ -47,7 +48,10 @@ class SavedVideosSection extends Component {
                 <div>
                   <SideBar />
                 </div>
-                <SavedVideosContainer isDarkTheme={isDarkTheme}>
+                <SavedVideosContainer
+                  isDarkTheme={isDarkTheme}
+                  data-testid="savedVideos"
+                >
                   {savedVideosList.map(eachSavedVideo => (
                     <SavedVideoCard
                       key={eachSavedVideo.id}
